@@ -46,3 +46,8 @@ get_ip_by_name www.google.com --json
   - Caching(dwrapd)
   - Reverse lookup
   - Multiple host lookups in one query. (get_ip_of_multiple_names google.com yahoo.com ya.ru)
+
+### Project Goals
+  - A platform / language / OS independent protocol.
+  - Being implemented only in Application Layer(L7)
+  - Support for a query syntax / language.(similar to `sh(1)`)

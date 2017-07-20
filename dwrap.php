@@ -37,7 +37,7 @@ function dwrapd_parse_request($request){
   $ip_return_limit = 0;
   $limit_index = NULL;
 
-  $request_array = explode(" ", $request);
+  $request_array = explode(' ', $request);
 
   /*
    * Removing the white spaces from the options.
@@ -129,7 +129,7 @@ function string_has_white_space($string){
     return 0; /* otherwise this function will return true on empty string. */
   }
 
-  return preg_match('/\s/', $string);
+  return preg_match("/\s/", $string);
 }
 
 

@@ -39,6 +39,7 @@ A DNS-like protocol that can work independently and/or on top of the existing DN
   - Made for programmers
 
 ### To-do
+  - C89 implementation. (`cc -pedantic -std=c89 -Wall`)
   - RESTful
   - Implementing all records. (MX, TXT, etc.)
   - Caching(dwrapd)

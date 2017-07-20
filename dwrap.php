@@ -4,6 +4,7 @@ function dwrapd_parse_request($request){
 /*
  *  PHP has getopt() but it only takes arguments from command line.
  */
+
   $command = NULL;
   $opts = array();
   $ip_addresses = array();
@@ -35,6 +36,7 @@ function dwrapd_parse_request($request){
 
 
       if ($limit_index = array_search("--limit", $request_array)){
+
         if (isset($request_array[$limit_index+1])){
 
           if (!string_has_white_space($request_array[$limit_index+1])){
@@ -44,11 +46,10 @@ function dwrapd_parse_request($request){
           }
 
         }
+
       }
 
-
       $ip_addresses = dwrapd_get_ip_by_hostname($request_array[1], $ip_return_limit);
-
 
       if (array_search("--json", $request_array)){
         return json_encode($ip_addresses);
@@ -63,6 +64,7 @@ function dwrapd_parse_request($request){
 
 
 function dwrapd_get_ip_by_hostname($hostname, $limit=0){
+
   $dns_result = NULL;
 
   $dns_result = dwrapd_do_dns_lookup($hostname);
@@ -76,6 +78,7 @@ function dwrapd_get_ip_by_hostname($hostname, $limit=0){
 
 
 function dwrapd_do_dns_lookup($hostname){
+
   $ips = NULL;
 
   /*

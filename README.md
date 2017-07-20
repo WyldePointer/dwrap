@@ -5,10 +5,15 @@ A DNS-like protocol that can work independently and/or on top of the existing DN
 get_ip_by_name www.google.com
 
 173.194.32.148
+
 173.194.32.144
+
 173.194.32.147
+
 173.194.32.146
+
 173.194.32.145
+
 
 get_ip_by_name www.google.com --limit 1
 

@@ -83,7 +83,7 @@ function dwrapd_parse_request($request){
       }
 
 
-      $ip_addresses = dwrapd_get_ip_by_hostname($request_array[1], $ip_return_limit);
+      $ip_addresses = dwrapd_get_ip_by_name($request_array[1], $ip_return_limit);
 
 
       if (array_search("--json", $request_array)){
@@ -98,7 +98,7 @@ function dwrapd_parse_request($request){
 }
 
 
-function dwrapd_get_ip_by_hostname($hostname, $limit=0){
+function dwrapd_get_ip_by_name($hostname, $limit=0){
 
   $dns_result = NULL;
 
@@ -128,6 +128,7 @@ function dwrapd_do_dns_lookup($hostname, $limit=0){
   return $ips;  
 }
 
+
 function string_has_white_space($string){
 
   if ($string == ''){
@@ -139,7 +140,7 @@ function string_has_white_space($string){
 
 
 
-$request_one = "get_ip_by_name www.google.com --limit 3 --json";
+$request_one = "get_ip_by_name www.google.com --json --limit 3";
 
 
 var_dump(dwrapd_parse_request($request_one));

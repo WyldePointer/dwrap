@@ -4,7 +4,7 @@ A DNS-like protocol that can work independently and/or on top of the existing DN
 
 ### Examples:
 
-get_ip_by_name www.google.com
+`get_ip_by_name www.google.com`
 
 173.194.32.148
 
@@ -19,20 +19,18 @@ get_ip_by_name www.google.com
 <br />
 <br />
 
-get_ip_by_name www.google.com --limit 1
+`get_ip_by_name www.google.com --limit 1`
 
 173.194.32.147
 
 <br />
 <br />
 
-get_ip_by_name www.google.com --json
+`get_ip_by_name www.google.com --json`
 
 ["173.194.32.148","173.194.32.144","173.194.32.147","173.194.32.146","173.194.32.145"]
 
-<br />
-<br />
-<br />
+---
 
 ### Features
   - JSON output

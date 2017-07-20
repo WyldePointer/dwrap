@@ -36,7 +36,8 @@ A DNS-like protocol that can work independently and/or on top of the existing DN
   - JSON output
   - Query result limit
   - Protocol friendly: TCP, UDP, etc.
-  - Made for programmers
+  - Made for programmers!
+  - Supports both FQDN and non-FQDN hosts.
 
 ### To-do
   - C89 implementation. (`cc -pedantic -std=c89 -Wall`)

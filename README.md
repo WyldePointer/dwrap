@@ -34,6 +34,7 @@ A DNS-like protocol that can work independently and/or on top of the existing DN
 
 ### Features
   - JSON output
+  - Local database(e.g, acting as DNS server)
   - Query result limit
   - Protocol friendly: TCP, UDP, etc.
   - Made for programmers!

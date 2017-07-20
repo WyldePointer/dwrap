@@ -42,10 +42,11 @@ A DNS-like protocol that can work independently and/or on top of the existing DN
 
 ### To-do
   - C89 implementation. (`cc -pedantic -std=c89 -Wall`)
-  - RESTful
+  - In-memory database for records and caching. (Redis)
+  - RESTful web API.
   - Implementing all records. (MX, TXT, etc.)
-  - Caching(dwrapd)
-  - Reverse lookup.
+  - Caching
+  - Reverse lookup
   - Multiple host lookups in one query. (`get_ip_of_multiple_names google.com yahoo.com ya.ru`)
 
 ### Project Goals

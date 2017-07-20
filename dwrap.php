@@ -20,9 +20,11 @@ function dwrapd_parse_request($request){
       unset($request_array[$array_key]);
     }
   }
+
   $request_array = array_values($request_array); /* Re-indexing the array */
 
   if (!is_null($request_array)){
+
     $command = $request_array[0];
 
     if ($command == "get_ip_by_name"){
@@ -40,6 +42,7 @@ function dwrapd_parse_request($request){
           } else {
             $ip_return_limit = 1;
           }
+
         }
       }
 
@@ -52,7 +55,6 @@ function dwrapd_parse_request($request){
       }
 
       return $ip_addresses;
-
     }
 
   }
@@ -66,7 +68,6 @@ function dwrapd_get_ip_by_hostname($hostname, $limit=0){
   $dns_result = dwrapd_do_dns_lookup($hostname);
 
   if ($limit < count($dns_result) && $limit != 0){
-
     return array_slice($dns_result, 0, $limit);
   }
 
@@ -94,9 +95,11 @@ function dwrapd_do_dns_lookup($hostname){
 }
 
 function string_has_white_space($string){
+
   if ($string == ''){
     return 0; /* otherwise this function will return true on empty string. */
   }
+
   return preg_match('/\s/', $string);
 }
 

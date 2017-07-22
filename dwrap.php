@@ -138,4 +138,24 @@ function string_has_white_space($string){
   return preg_match("/\s/", $string);
 }
 
+function get_url_array(){
+
+  $sorted = array();
+
+  $all = explode('/', $_SERVER["REQUEST_URI"]);
+  unset($all[0]);  /* remove the empty index from the beginning of array */
+
+  foreach ($all as $param){
+    if ((intval($param)!=0) && ($param == intval($param)) && (strlen($param) == strlen(intval($param))) ){
+      $sorted[] = intval($param);
+    }else{
+      if (!empty($param)){
+        $sorted[] = $param;
+      }
+    }
+  }
+
+  return $sorted;
+}
+
 

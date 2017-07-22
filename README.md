@@ -30,6 +30,15 @@ A DNS-like protocol that can work independently and/or on top of the existing DN
 ```
 ["173.194.32.148","173.194.32.144","173.194.32.147","173.194.32.146","173.194.32.145"]
 ```
+
+#### /api/
+```
+GET /api/get_ip_by_name/www.google.com
+GET /api/get_ip_by_name/www.google.com/limit/3
+GET /api/get_ip_by_name/www.google.com/json
+GET /api/get_ip_by_name/www.google.com/json/limit/2
+```
+
 ---
 
 ### Features

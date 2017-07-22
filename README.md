@@ -48,11 +48,12 @@ GET /api/get_ip_by_name/www.google.com/json/limit/2
   - Protocol friendly: TCP, UDP, etc.
   - Made for programmers!
   - Supports both FQDN and non-FQDN hosts.
+  - API (Think about it as DNS over HTTP)
 
 ### To-do
   - C89 implementation. (`cc -pedantic -std=c89 -Wall`)
   - In-memory database for records and caching. (Redis)
-  - RESTful web API.
+  - RESTful.
   - Implementing all records. (MX, TXT, etc.)
   - Caching
   - Reverse lookup

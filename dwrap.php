@@ -139,8 +139,3 @@ function string_has_white_space($string){
 }
 
 
-
-$request_one = "get_ip_by_name www.google.com --json --limit 3";
-
-
-var_dump(dwrapd_parse_request($request_one));

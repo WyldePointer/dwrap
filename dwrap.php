@@ -34,8 +34,6 @@ function dwrapd_parse_request($request){
   $command = NULL;
   $result = NULL;
 
-
-
   $request_array = explode(' ', $request);
 
   /*
@@ -54,6 +52,7 @@ function dwrapd_parse_request($request){
     $command = $request_array[0];
 
     switch ($command){
+
       case "get_ip_by_name":
         $result = _dwrapd_get_ip_by_name($request_array);
         break;
@@ -61,7 +60,6 @@ function dwrapd_parse_request($request){
       default:
         return -1; /* invalid command. TODO: Better error codes */
     }
-
 
     if (array_search("--json", $request_array)){
       return json_encode($result);
@@ -74,17 +72,10 @@ function dwrapd_parse_request($request){
 }
 
 
-function _dwrapd_get_ip_by_name($request_array){
+function _dwrapd_syntax_parser_get_limit($request_array){
 
-  $dns_result = NULL;
   $limit_index = NULL;
   $ip_return_limit = 0;
-  $ip_addresses = array();
-
-  if (!isset($request_array[1])){
-    return -1; /* no hostname */
-  }
-
 
   if ($limit_index = array_search("--limit", $request_array)){
 
@@ -96,9 +87,7 @@ function _dwrapd_get_ip_by_name($request_array){
       if (!(substr($request_array[$limit_index+1], 0, 1) == '-' xor substr($request_array[$limit_index+1], 0, 1) == '--')){
 
         if (intval($request_array[$limit_index+1])){
-          $ip_return_limit = $request_array[$limit_index+1];
-        }else{
-          return -2; /* non-digit limit */
+          return $request_array[$limit_index+1];
         }
 
       }
@@ -107,10 +96,26 @@ function _dwrapd_get_ip_by_name($request_array){
 
   }
 
-  $dns_result = dwrapd_do_dns_lookup($request_array[1], $ip_return_limit);
+  return $ip_return_limit;
+}
 
-  if ($ip_return_limit < count($dns_result) && $ip_return_limit != 0){
-    return array_slice($dns_result, 0, $ip_return_limit);
+
+function _dwrapd_get_ip_by_name($request_array){
+
+  $dns_result = NULL;
+  $ip_addresses = array();
+  $return_limit = NULL;
+
+  if (!isset($request_array[1])){
+    return -1; /* no hostname */
+  }
+
+  $return_limit = _dwrapd_syntax_parser_get_limit($request_array);
+
+  $dns_result = dwrapd_do_dns_lookup($request_array[1], $return_limit);
+
+  if ($return_limit < count($dns_result) && $return_limit != 0){
+    return array_slice($dns_result, 0, $return_limit);
   }
 
   return $dns_result;
@@ -179,6 +184,7 @@ function dwrapd_do_mx_lookup($hostname){
   return 0;
 }
 
+
 function string_has_white_space($string){
 
   if ($string == ''){
@@ -187,6 +193,7 @@ function string_has_white_space($string){
 
   return preg_match("/\s/", $string);
 }
+
 
 function get_url_array(){
 

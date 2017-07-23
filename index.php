@@ -111,6 +111,7 @@ if (isset($url[0])){
 }
 
 $request_one = "get_ip_by_name www.google.com --limit 3 --json";
+$mx_req = "get_mx gmail.com --limit 3";
 
-var_dump(dwrapd_parse_request($request_one));
+var_dump(dwrapd_parse_request($mx_req));
 

@@ -57,6 +57,11 @@ function dwrapd_parse_request($request){
         $result = _dwrapd_get_ip_by_name($request_array);
         break;
 
+      case "get_mx":
+        $result = _dwrapd_get_mx($request_array);
+        break;
+
+
       default:
         return -1; /* invalid command. TODO: Better error codes */
     }
@@ -69,6 +74,28 @@ function dwrapd_parse_request($request){
   }
 
   return 0;
+}
+
+
+
+function _dwrapd_get_mx($request_array){
+
+  $dns_result = NULL;
+  $return_limit = NULL;
+
+  if (!isset($request_array[1])){
+    return -1; /* no hostname */
+  }
+
+  $return_limit = _dwrapd_syntax_parser_get_limit($request_array);
+
+  $dns_result = dwrapd_do_mx_lookup($request_array[1]);
+
+  if ($return_limit < count($dns_result) && $return_limit != 0){
+    return array_slice($dns_result, 0, $return_limit, true);
+  }
+
+  return $dns_result;
 }
 
 

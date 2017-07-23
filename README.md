@@ -103,4 +103,10 @@ and later on, after more developments, we can do some real-world benchmark
 and analysis based on the data that we can gather from our web-server related 
 equipments.(Be it a physical load balancer or an apache/nginx/tomcat instance) 
 <br />
+<br />
+
+### Links
+https://news.ycombinator.com/item?id=12609752
+
+https://developers.google.com/speed/public-dns/docs/dns-over-https
 

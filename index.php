@@ -110,7 +110,7 @@ if (isset($url[0])){
 
 }
 
-$request_one = "get_ip_by_name www.google.com --json --limit 3";
+$request_one = "get_ip_by_name www.google.com --limit 3 --json";
 
 var_dump(dwrapd_parse_request($request_one));
 

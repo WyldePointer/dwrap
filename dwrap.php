@@ -32,10 +32,9 @@ function dwrapd_parse_request($request){
  */
 
   $command = NULL;
-  $opts = array();
-  $ip_addresses = array();
-  $ip_return_limit = 0;
-  $limit_index = NULL;
+  $result = NULL;
+
+
 
   $request_array = explode(' ', $request);
 
@@ -54,58 +53,64 @@ function dwrapd_parse_request($request){
 
     $command = $request_array[0];
 
-    if ($command == "get_ip_by_name"){
+    switch ($command){
+      case "get_ip_by_name":
+        $result = _dwrapd_get_ip_by_name($request_array);
+        break;
 
-      if (!isset($request_array[1])){
-        return -1; /* no hostname */
-      }
+      default:
+        return -1; /* invalid command. TODO: Better error codes */
+    }
 
 
-      if ($limit_index = array_search("--limit", $request_array)){
+    if (array_search("--json", $request_array)){
+      return json_encode($result);
+    }
 
-        $ip_return_limit = 1;
+    return $result;
+  }
 
-        if (isset($request_array[$limit_index+1])){
+  return 0;
+}
 
-          /* if it's not an option */
-          if (!(substr($request_array[$limit_index+1], 0, 1) == '-' xor substr($request_array[$limit_index+1], 0, 1) == '--')){
 
-            if (intval($request_array[$limit_index+1])){
-              $ip_return_limit = $request_array[$limit_index+1];
-            }else{
-              return -2; /* non-digit limit */
-            }
+function _dwrapd_get_ip_by_name($request_array){
 
-          }
+  $dns_result = NULL;
+  $limit_index = NULL;
+  $ip_return_limit = 0;
+  $ip_addresses = array();
 
+  if (!isset($request_array[1])){
+    return -1; /* no hostname */
+  }
+
+
+  if ($limit_index = array_search("--limit", $request_array)){
+
+    $ip_return_limit = 1;
+
+    if (isset($request_array[$limit_index+1])){
+
+      /* if it's not an option */
+      if (!(substr($request_array[$limit_index+1], 0, 1) == '-' xor substr($request_array[$limit_index+1], 0, 1) == '--')){
+
+        if (intval($request_array[$limit_index+1])){
+          $ip_return_limit = $request_array[$limit_index+1];
+        }else{
+          return -2; /* non-digit limit */
         }
 
       }
 
-
-      $ip_addresses = dwrapd_get_ip_by_name($request_array[1], $ip_return_limit);
-
-
-      if (array_search("--json", $request_array)){
-        return json_encode($ip_addresses);
-      }
-
-      return $ip_addresses;
     }
 
   }
 
-}
+  $dns_result = dwrapd_do_dns_lookup($request_array[1], $ip_return_limit);
 
-
-function dwrapd_get_ip_by_name($hostname, $limit=0){
-
-  $dns_result = NULL;
-
-  $dns_result = dwrapd_do_dns_lookup($hostname, $limit);
-
-  if ($limit < count($dns_result) && $limit != 0){
-    return array_slice($dns_result, 0, $limit);
+  if ($ip_return_limit < count($dns_result) && $ip_return_limit != 0){
+    return array_slice($dns_result, 0, $ip_return_limit);
   }
 
   return $dns_result;
@@ -140,7 +145,7 @@ function dwrapd_do_mx_lookup($hostname){
    *        and using it instead of doing the actual lookup.
    */
 
-  if(!filter_var(dwrapd_get_ip_by_name($hostname, 1), FILTER_VALIDATE_IP)){
+  if(!filter_var(dwrapd_do_dns_lookup($hostname, 1), FILTER_VALIDATE_IP)){
     return -1;
   }
 

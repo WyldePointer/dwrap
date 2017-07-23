@@ -89,7 +89,7 @@ function _dwrapd_get_mx($request_array){
 
   $return_limit = _dwrapd_syntax_parser_get_limit($request_array);
 
-  $dns_result = dwrapd_do_mx_lookup($request_array[1]);
+  $dns_result = dwrapd_do_dns_lookup_mx($request_array[1]);
 
   if ($return_limit < count($dns_result) && $return_limit != 0){
     return array_slice($dns_result, 0, $return_limit, true);
@@ -139,7 +139,7 @@ function _dwrapd_get_ip_by_name($request_array){
 
   $return_limit = _dwrapd_syntax_parser_get_limit($request_array);
 
-  $dns_result = dwrapd_do_dns_lookup($request_array[1], $return_limit);
+  $dns_result = dwrapd_do_dns_lookup_a($request_array[1], $return_limit);
 
   if ($return_limit < count($dns_result) && $return_limit != 0){
     return array_slice($dns_result, 0, $return_limit);
@@ -149,7 +149,7 @@ function _dwrapd_get_ip_by_name($request_array){
 }
 
 
-function dwrapd_do_dns_lookup($hostname, $limit=0){
+function dwrapd_do_dns_lookup_a($hostname, $limit=0){
 
   $ips = NULL;
 
@@ -163,10 +163,11 @@ function dwrapd_do_dns_lookup($hostname, $limit=0){
   }
 
   return $ips;  
+
 }
 
 
-function dwrapd_do_mx_lookup($hostname){
+function dwrapd_do_dns_lookup_mx($hostname){
 
   $mx_records = array();
   $weights = array();
@@ -177,7 +178,7 @@ function dwrapd_do_mx_lookup($hostname){
    *        and using it instead of doing the actual lookup.
    */
 
-  if(!filter_var(dwrapd_do_dns_lookup($hostname, 1), FILTER_VALIDATE_IP)){
+  if(!filter_var(dwrapd_do_dns_lookup_a($hostname, 1), FILTER_VALIDATE_IP)){
     return -1;
   }
 

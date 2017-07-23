@@ -129,6 +129,51 @@ function dwrapd_do_dns_lookup($hostname, $limit=0){
 }
 
 
+function dwrapd_do_mx_lookup($hostname){
+
+  $mx_records = array();
+  $weights = array();
+  $formatted = array();
+
+  /*
+   *  TODO: Finding the most address-friendly regex
+   *        and using it instead of doing the actual lookup.
+   */
+
+  if(!filter_var(dwrapd_get_ip_by_name($hostname, 1), FILTER_VALIDATE_IP)){
+    return -1;
+  }
+
+  if (getmxrr($hostname, $mx_records, $weights)){
+
+    if (count($mx_records) == count($weights)){
+
+      foreach ($weights as $key => $value){
+
+        /*
+         *  TODO: Making sure the returned address is not spoofed.
+         *        (e,g. it's a valid record)
+         */
+
+        if (isset($mx_records[$key])){
+          $formatted[$value] = $mx_records[$key];
+        }
+
+      }
+
+      if (count($formatted)>0){
+        return $formatted;
+      }
+
+    }
+
+    return $mx_records;
+  }
+
+
+  return 0;
+}
+
 function string_has_white_space($string){
 
   if ($string == ''){

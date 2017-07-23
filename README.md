@@ -94,6 +94,16 @@ By having this communication protocol on top of the existing HTTP(S)
 infrastructure, we can increase the overall productivity of our cloud(s).
 <br />
 
+Thinking of security, one way or another we've suffered from DNS problems at 
+least once in our lives! In the most simplest form, a lot of issues can be 
+addressed much easier and faster, and of course cheaper!
+
+Some of these problems are existing in HTTP(S) as well but if you do a basic 
+comparison between number of websites that are using TLS(HTTPS) with those 
+which are using DNSSEC or DANE, you'll get the picture. It also does not need 
+your TLD to support anything special. They're built-in and anyone can just 
+enable them on demand!
+
 Personally I believe that the HTTP(S) is a good candidate which has actually 
 worked for a long time.(Besides the early cryptography extensions such as SSL) 
 <br />

@@ -94,7 +94,7 @@ By having this communication protocol on top of the existing HTTP(s)
 infrastructure, we can increase the overall productivity of our cloud(s).
 <br />
 
-Personally I believe that the HTTP(s) is a good candidate that actually 
+Personally I believe that the HTTP(s) is a good candidate which has actually 
 worked for a long time.(Besides the early cryptography extensions such as SSL) 
 <br />
 

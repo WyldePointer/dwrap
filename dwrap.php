@@ -149,6 +149,51 @@ function _dwrapd_get_ip_by_name($request_array){
 }
 
 
+function dwrapd_do_dns_lookup($hostname, $record='A'){
+
+  $result = array();
+  $php_record_type = DNS_A;
+
+  if ($hostname == ''){
+    return -1;
+  }
+
+  switch ($record){
+    case "txt":
+    case "TXT":
+      $php_record_type = DNS_TXT;
+      break;
+
+    case 'a':
+    case 'A':
+      $php_record_type = DNS_A;
+      break;
+
+    default:
+      return -13; /* DWRAPD_LOOKUP_NOT_IMPLEMENTED_FOR_RECORD */
+  }
+
+  $result = dns_get_record($hostname, $php_record_type);
+
+  if (isset($result[0]["type"])){
+
+    switch ($result[0]["type"]){
+
+      case "TXT":
+        return $result[0]["txt"];
+        break;
+
+      case 'A':
+        return $result[0]["ip"];
+        break;
+
+    }
+
+  }
+
+  return 0;
+}
+
 function dwrapd_do_dns_lookup_a($hostname, $limit=0){
 
   $ips = NULL;

@@ -66,8 +66,10 @@ GET /api/get_ip_by_name/www.google.com/json/limit/2
   - Record-specific request. (e.g, MX, A)
   - Shell-like syntax
 
-### To-do
+### TODO
   - C89 implementation. (`cc -pedantic -std=c89 -Wall`)
+  - Input validation / sanitation. (As well as response values)
+  - Logging
   - In-memory database for records and caching. (Redis)
   - RESTful.
   - Implementing all records. (TXT, etc.)

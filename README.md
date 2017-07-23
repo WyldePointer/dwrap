@@ -76,6 +76,31 @@ GET /api/get_ip_by_name/www.google.com/json/limit/2
   - Multiple host lookups in one query. (`get_ip_of_multiple_names google.com yahoo.com ya.ru`)
 
 ### Project Goals
-  - A platform / language / OS independent protocol.
+  - Decentralized system.
+  - An OS / language / platform independent protocol.
   - Being implemented only in Application Layer(L7).
   - Support for a query syntax / language. (similar to `sh(1)`)
+  - Something that everyone can run. (UPnP of the name resolution world) 
+
+
+### But.. why?
+Thinking of high available computing, we must have a quick and effective 
+mechanism for applying changes, and most importantly, the one that works 
+the same way across all other implementations and environments.
+(Imagine the *exact opposite* of HTML and CSS combination!)
+<br />
+
+By having this communication protocol on top of the existing HTTP(s) 
+infrastructure, we can increase the overall productivity of our cloud(s).
+<br />
+
+Personally I believe that the HTTP(s) is a good candidate that actually 
+worked for a long time.(Besides the early cryptography extensions such as SSL) 
+<br />
+
+I hope people will use this code in their small environments first 
+and later on, after more developments, we can do some real-world benchmark 
+and analysis based on the data that we can gather from our web-server related 
+equipments.(Be it a physical load balancer or an apache/nginx/tomcat instance) 
+<br />
+

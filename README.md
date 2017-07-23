@@ -62,7 +62,7 @@ GET /api/get_ip_by_name/www.google.com/json/limit/2
   - Protocol friendly: TCP, UDP, etc.
   - Made for programmers!
   - Supports both FQDN and non-FQDN hosts.
-  - API (Think about it as DNS over HTTP)
+  - API (Think about it as DNS over HTTPS)
   - Record-specific request. (e.g, MX, A)
   - Shell-like syntax
 

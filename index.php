@@ -55,6 +55,12 @@ if (isset($url[0])){
     $json = array_search("json", $url);
     $limit_index = array_search("limit", $url);
 
+    /* If the word "limit" was found in URL */
+    if ($limit_index){
+      $limit = 1;
+    }
+
+    /* If there was a number next to "limit" in URL */
     if (isset($url[$limit_index+1])){
 
       if (intval($url[$limit_index+1]) == $url[$limit_index+1]){
@@ -73,7 +79,7 @@ if (isset($url[0])){
           $ip_array[] = $ip;
         }
 
-        if (count($ip_array) >= $limit){
+        if (count($ip_array) >= $limit && $limit > 0){
           break;
         }
 

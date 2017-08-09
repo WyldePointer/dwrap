@@ -72,7 +72,7 @@ GET /api/get_ip_by_name/www.google.com/json/limit/2
   - Logging
   - In-memory database for records and caching. (Redis)
   - RESTful.
-  - Implementing all records. (TXT, etc.)
+  - Implementing all records. (Currently supporting A, MX, and TXT.)
   - Caching
   - Reverse lookup
   - Multiple host lookups in one query. (`get_ip_of_multiple_names google.com yahoo.com ya.ru`)

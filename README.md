@@ -67,7 +67,8 @@ GET /api/get_ip_by_name/www.google.com/json/limit/2
   - Shell-like syntax
 
 ### TODO
-  - C89 implementation. (`cc -pedantic -std=c89 -Wall`)
+  - Implementing `dwrapd` in C. (`cc -pedantic -std=c89 -Wall`)
+  - Python prototype of the `dwrapd` and having separate `dwrapd-python` repository.
   - Input validation / sanitation. (As well as response values)
   - Logging
   - In-memory database for records and caching. (Redis)

@@ -28,95 +28,14 @@
 
 require "dwrap.php";
 
-function show_api_help(){
-  echo <<<HELP
-<h4>dwrap API examples:</h4>
-<pre>GET /api/get_ip_by_name/www.google.com</pre>
-<pre>GET /api/get_ip_by_name/www.google.com/limit/3</pre>
-<pre>GET /api/get_ip_by_name/www.google.com/json</pre>
-<pre>GET /api/get_ip_by_name/www.google.com/json/limit/2</pre>
-HELP;
-}
+if (_dwrapd_is_a_rest_request()){
 
-$ip_array = array();
-$json = false;
-$limit = 0;
-$limit_index = 0;
-$url = get_url_array();
+  _dwrapd_handle_rest_request();
 
-if (isset($url[0])){
+} else {
 
-  if ($url[0] == "api"){
+  $request_one = "get_ip_by_name www.google.com --limit 3 --json";
 
-    if (!isset($url[1])){
-      die(show_api_help());
-    }
-
-    $json = array_search("json", $url);
-    $limit_index = array_search("limit", $url);
-
-    /* If the word "limit" was found in URL */
-    if ($limit_index){
-      $limit = 1;
-    }
-
-    /* If there was a number next to "limit" in URL */
-    if (isset($url[$limit_index+1])){
-
-      if (intval($url[$limit_index+1]) == $url[$limit_index+1]){
-        $limit = $url[$limit_index+1];
-      }
-
-    }
-
-    $ips = dwrapd_do_dns_lookup_a($url[1], $limit);
-
-    if (is_array($ips)){
-
-      foreach ($ips as $ip){
-
-        if(filter_var($ip, FILTER_VALIDATE_IP)){
-          $ip_array[] = $ip;
-        }
-
-        if (count($ip_array) >= $limit && $limit > 0){
-          break;
-        }
-
-      }
-
-    } else {
-
-      if ($ips != ''){
-        echo $ips;
-      }
-
-    }
-
-    if (count($ip_array)){
-
-      if ($json){
-
-        echo json_encode($ip_array);
-
-      } else {
-
-        foreach ($ip_array as $ip){
-
-          echo $ip, "\n";
-
-        }
-
-      }
-
-    }
-
-    die();
-  }
+  var_dump(dwrapd_parse_request($request_one));
 
 }
-
-$request_one = "get_ip_by_name www.google.com --limit 3 --json";
-
-var_dump(dwrapd_parse_request($request_one));
-

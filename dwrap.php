@@ -289,3 +289,106 @@ function get_url_array(){
 }
 
 
+function _dwrapd_is_a_rest_request(){
+
+  $url = get_url_array();
+
+  if (isset($url[0])){
+
+    if ($url[0] == "api"){
+
+      return true;
+
+    }
+
+  }
+
+  return false;
+}
+
+
+function _dwrapd_handle_rest_request(){
+
+    $ip_array = array();
+    $json = false;
+    $limit = 0;
+    $limit_index = 0;
+
+    $url = get_url_array();
+
+    if (!_dwrapd_is_a_rest_request()){
+      return -1;
+    }
+
+    if (!isset($url[1])){
+      return -2; /* No action supplied */
+    }
+
+    if (!isset($url[2])){
+      return -3; /* No hostname supplied */
+    }
+
+    $json = array_search("json", $url);
+
+    $limit_index = array_search("limit", $url);
+
+    /* If the word "limit" was found in URL */
+    if ($limit_index){
+      $limit = 1;
+    }
+
+    /* If there was a number next to "limit" in URL */
+    if (isset($url[$limit_index+1])){
+
+      if (intval($url[$limit_index+1]) == $url[$limit_index+1]){
+        $limit = $url[$limit_index+1];
+      }
+
+    }
+
+    $ips = dwrapd_do_dns_lookup_a($url[2], $limit);
+
+    if (is_array($ips)){
+
+      foreach ($ips as $ip){
+
+        if(filter_var($ip, FILTER_VALIDATE_IP)){
+          $ip_array[] = $ip;
+        }
+
+        if (count($ip_array) >= $limit && $limit > 0){
+          break;
+        }
+
+      }
+
+    } else {
+
+      if ($ips != ''){
+        echo $ips;
+      }
+
+    }
+
+    if (count($ip_array)){
+
+      if ($json){
+
+        echo json_encode($ip_array);
+
+      } else {
+
+        foreach ($ip_array as $ip){
+
+          echo $ip, "\n";
+
+        }
+
+      }
+
+    }
+
+  return true;
+}
+
+

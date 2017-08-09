@@ -75,7 +75,7 @@ GET /api/get_ip_by_name/www.google.com/json/limit/2
 
 ### TODO
   - Implementing `dwrapd` in C. (`cc -pedantic -std=c89 -Wall`)
-  - Python prototype of the `dwrapd` and having separate `dwrapd-python` repository.
+  - Python prototype of the `dwrapd` and having a separate `dwrapd-python` repository. (As well as `dwrapd-rust` and so on)
   - Implementation of a DNS-server that uses dwrap as its back-end and communication protocol.
   - More language binding. (PHP library is available here: https://github.com/WyldePointer/libdwrap-php)
   - Input validation / sanitization. (As well as response values)

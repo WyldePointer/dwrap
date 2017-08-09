@@ -63,15 +63,15 @@ GET /api/get_ip_by_name/www.google.com/json/limit/2
   - Something that everyone can run. (UPnP of the name resolution world)
 
 ### Features
-  - JSON output
-  - Local database(e.g, acting as DNS server)
-  - Query result limit
+  - JSON output.
+  - Local database. (e.g, acting as DNS server)
+  - Query result limit.
   - Protocol friendly: TCP, UDP, etc.
-  - Made for programmers!
-  - Supports both FQDN and non-FQDN hosts.
-  - API (Think about it as DNS over HTTPS)
+  - Made for programmers.
+  - Resolving both FQDN and non-FQDN hosts.
+  - Web API. (Think about it as DNS over HTTPS)
   - Record-specific request. (e.g, MX, A)
-  - Shell-like syntax
+  - Shell-like syntax.
 
 ### TODO
   - Implementing `dwrapd` in C. (`cc -pedantic -std=c89 -Wall`)
@@ -79,12 +79,12 @@ GET /api/get_ip_by_name/www.google.com/json/limit/2
   - Implementation of a DNS-server that uses dwrap as its back-end and communication protocol.
   - More language binding. (PHP library is available here: https://github.com/WyldePointer/libdwrap-php)
   - Input validation / sanitization. (As well as response values)
-  - Logging
+  - Logging.
   - In-memory database for records and caching. (Redis)
   - RESTful.
   - Implementing all records. (Currently supporting A, MX, and TXT.)
-  - Caching
-  - Reverse lookup
+  - Caching.
+  - Reverse lookup.
   - Multiple host lookups in one query. (`get_ip_of_multiple_names google.com yahoo.com ya.ru`)
 
 ### But.. why?

@@ -71,7 +71,7 @@ GET /api/get_ip_by_name/www.google.com/json/limit/2
   - Python prototype of the `dwrapd` and having separate `dwrapd-python` repository.
   - Implementation of a DNS-server that uses dwrap as its back-end and communication protocol.
   - More language binding. (PHP library is available here: https://github.com/WyldePointer/libdwrap-php)
-  - Input validation / sanitation. (As well as response values)
+  - Input validation / sanitization. (As well as response values)
   - Logging
   - In-memory database for records and caching. (Redis)
   - RESTful.

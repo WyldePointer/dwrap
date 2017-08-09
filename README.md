@@ -55,6 +55,13 @@ GET /api/get_ip_by_name/www.google.com/json/limit/2
 
 ---
 
+### Project Goals
+  - Decentralized system.
+  - An OS / language / platform independent protocol.
+  - Being implemented only in Application Layer(L7).
+  - Support for a query syntax / language. (similar to `sh(1)`)
+  - Something that everyone can run. (UPnP of the name resolution world)
+
 ### Features
   - JSON output
   - Local database(e.g, acting as DNS server)
@@ -79,14 +86,6 @@ GET /api/get_ip_by_name/www.google.com/json/limit/2
   - Caching
   - Reverse lookup
   - Multiple host lookups in one query. (`get_ip_of_multiple_names google.com yahoo.com ya.ru`)
-
-### Project Goals
-  - Decentralized system.
-  - An OS / language / platform independent protocol.
-  - Being implemented only in Application Layer(L7).
-  - Support for a query syntax / language. (similar to `sh(1)`)
-  - Something that everyone can run. (UPnP of the name resolution world) 
-
 
 ### But.. why?
 Thinking of high available computing, we must have a quick and effective 

@@ -1,57 +1,8 @@
 # dwrap
 A DNS-like protocol that can work independently and/or on top of the existing DNS infrastructure.
 
-
-### Examples:
-
-`get_ip_by_name www.google.com`
-```
-173.194.32.148
-
-173.194.32.144
-
-173.194.32.147
-
-173.194.32.146
-
-173.194.32.145
-```
-<br />
-<br />
-
-`get_ip_by_name www.google.com --limit 1`
-```
-173.194.32.147
-```
-<br />
-<br />
-
-`get_ip_by_name www.google.com --json`
-```
-["173.194.32.148","173.194.32.144","173.194.32.147","173.194.32.146","173.194.32.145"]
-```
-<br />
-<br />
-
-`get_mx gmail.com --limit 3`
-```
-array(3) {
-  [40]=>
-  string(31) "alt4.gmail-smtp-in.l.google.com"
-  [5]=>
-  string(26) "gmail-smtp-in.l.google.com"
-  [10]=>
-  string(31) "alt1.gmail-smtp-in.l.google.com"
-}
-```
-
-#### /api/
-```
-GET /api/get_ip_by_name/www.google.com
-GET /api/get_ip_by_name/www.google.com/limit/3
-GET /api/get_ip_by_name/www.google.com/json
-GET /api/get_ip_by_name/www.google.com/json/limit/2
-```
+#### API Examples
+https://github.com/WyldePointer/dwrapd-rest-php#api-examples
 
 ---
 

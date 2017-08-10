@@ -1,46 +1,38 @@
 # dwrap
 A DNS-like protocol that can work independently and/or on top of the existing DNS infrastructure.
 
-#### API Examples
-https://github.com/WyldePointer/dwrapd-rest-php#api-examples
-
----
+### Implementations
+  - Server: https://github.com/WyldePointer/dwrapd-rest-php
+  - Client: https://github.com/WyldePointer/libdwrap-php
 
 ### Project Goals
   - Decentralized system.
   - An OS / language / platform independent protocol.
-  - Being implemented only in Application Layer(L7).
-  - Support for a query syntax / language. (similar to `sh(1)`)
+  - Being implemented *only* in Application Layer. (L7)
   - Something that everyone can run. (UPnP of the name resolution world)
 
 ### Features
+  - Encrypted data transfer. (TLS)
   - JSON output.
-  - Local database. (e.g, acting as DNS server)
   - Query result limit.
   - Protocol friendly: TCP, UDP, etc.
   - Made for programmers.
-  - Resolving both FQDN and non-FQDN hosts.
-  - Web API. (Think about it as DNS over HTTPS)
-  - Record-specific request. (e.g, MX, A)
-  - Shell-like syntax.
-
-### Implementations
-  - Server: https://github.com/WyldePointer/dwrapd-rest-php
-  - Client: https://github.com/WyldePointer/libdwrap-php
+  - RESTful Web API. (Think about it as DNS over HTTPS)
 
 ### TODO
   - Implementing `dwrapd` in C. (`cc -pedantic -std=c89 -Wall`)
   - Python prototype of the `dwrapd` and having a separate `dwrapd-python` repository. (As well as `dwrapd-rust` and so on)
   - Implementation of a DNS-server that uses dwrap as its back-end and communication protocol.
-  - More language binding.
-  - Input validation / sanitization. (As well as response values)
+  - More language binding. (Currently supports PHP)
   - Logging.
-  - In-memory database for records and caching. (Redis)
-  - RESTful.
+  - In-memory database for storing records. (Redis)
   - Implementing all records. (Currently supporting A, MX, and TXT.)
-  - Caching.
   - Reverse lookup.
-  - Multiple host lookups in one query. (`get_ip_of_multiple_names google.com yahoo.com ya.ru`)
+  - Multiple host lookups in one query? (`get_ip_of_multiple_names google.com yahoo.com ya.ru`)
+  - Support for PKI.
+  - Local database. (e.g, acting as DNS server)
+  - Shell-like syntax.
+  - Resolving both FQDN and non-FQDN hosts.
 
 ### But.. why?
 Thinking of high available computing, we must have a quick and effective 

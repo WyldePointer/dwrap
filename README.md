@@ -20,7 +20,7 @@ A DNS-like protocol that can work independently and/or on top of the existing DN
   - RESTful Web API. (Think about it as DNS over HTTPS)
 
 ### TODO
-  - Implementing `dwrapd` in C. (`cc -pedantic -std=c89 -Wall`)
+  - Implementing `dwrapd` in C (`cc -pedantic -std=c89 -Wall`) and Rust.
   - Python prototype of the `dwrapd` and having a separate `dwrapd-python` repository. (As well as `dwrapd-rust` and so on)
   - Implementation of a DNS-server that uses dwrap as its back-end and communication protocol.
   - More language binding. (Currently supports PHP)

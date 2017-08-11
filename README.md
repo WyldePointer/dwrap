@@ -71,3 +71,5 @@ https://news.ycombinator.com/item?id=12609752
 
 https://developers.google.com/speed/public-dns/docs/dns-over-https
 
+https://www.isc.org/community/rfcs/dns/
+
